@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>TODO-LIST</header>
+    <div class="content">
+        <div class="left">
+            <div class="Tasks">
+                <div id="see_inbox">
+                    <img src="img/inbox.svg"> <span>Inbox</span>
+                </div>
+                <div id="see_today">
+                    <img src="img/today.svg"> <span>Today</span>
+                </div>
+                <div id="see_month">
+                    <img src="img/calendar.svg"> <span>Month</span>
+                </div>
+            </div>
+
+        <!----------------------------------------------------------------------->
+            
+            <div class="Projects">
+                <h3>PROJECTS</h3>
+                <p>Add new project</p>
+                <input type="text" id="name_proyecto"> <button onclick="new_project()">Add</button>
+                <div id="projects-content">
+                    <p> <img src="img/list.svg"> <span>New project</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!----------------------------------------------------------------------->
+        
+        <div class="right">
+            <h2 id="title">INBOX</h2>
+            <div class="right-content" id="right-content">
+                <button onclick="new_tarea()">Nueva tarea</button>
+                <input type="text" placeholder="Name" id="name_tarea">
+                <input type="date" id="date_tarea">
+                <input type="text" placeholder="Description" id="description_tarea">
+                <div id="container">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

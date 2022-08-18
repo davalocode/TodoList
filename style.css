@@ -1,0 +1,64 @@
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*----------------------------CABECERA-----------------------*/
+header {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    width: 100%;
+    height: 100px;
+}
+
+/*--------------------------TAREAS Y PROYECTOS IZQUIERDA------------------------*/
+.left {
+    background-color: antiquewhite;
+    width: 25%;
+}
+.Tasks div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.Tasks div img {
+    width: 8%;
+    margin: 2%;
+    margin-left: 5%;
+}
+.Projects * {
+    margin: 2%;
+    margin-left: 5%;
+}
+.Projects button {
+    margin-left:  1%;
+}
+.Projects img {
+    width: 5%;
+}
+.Projects p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/*-------------------------TAREAS Y PROYECTOS DERECHA--------------------------*/
+.right {
+    background-color: rebeccapurple;
+    width: 75%;
+}
+.right h2 {
+    margin-left: 2%; 
+}
+.right-content div {
+    margin: 2%;
+    width: 80%;
+    background-color: red;
+}
+.right-content span {
+    margin: 1%;
+}
+.right-content button:first-child {
+    margin-left: 2%;
+}
