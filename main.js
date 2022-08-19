@@ -184,6 +184,11 @@ function delete_content() {
 //MOSTRAR DISTINTOS ARRAYS
 
 let longitud_inbox;
+let prueba2;
+let prueba3;
+let nombre;
+let fecha;
+let descripcion;
 
 document.getElementById("see_inbox").addEventListener("click", function home() {
     id_div = 0;
@@ -192,15 +197,16 @@ document.getElementById("see_inbox").addEventListener("click", function home() {
     delete_content();
 
         localStorage.setItem("array", JSON.stringify(array_inbox));
-        let prueba2 = localStorage.getItem("array");
-        let prueba3 = JSON.parse(prueba2);
+        prueba2 = localStorage.getItem("array");
+        console.log(prueba2);
+        prueba3 = JSON.parse(prueba2);
         console.log(prueba3);
         console.log(prueba3[0].nombre)
 
     while (nuevo_contador <= longitud_inbox) {
-        let nombre = array_inbox[nuevo_contador].nombre;
-        let fecha = array_inbox[nuevo_contador].fecha;
-        let descripcion = array_inbox[nuevo_contador].description;
+        let nombre = prueba3[nuevo_contador].nombre;
+        let fecha = prueba3[nuevo_contador].fecha;
+        let descripcion = prueba3[nuevo_contador].description;
 
         crear(nombre, fecha, descripcion);
 
@@ -208,6 +214,7 @@ document.getElementById("see_inbox").addEventListener("click", function home() {
         nuevo_contador++;
     }
 });
+
 
 document.getElementById("see_today").addEventListener("click", function home() {
     id_div = 0;
