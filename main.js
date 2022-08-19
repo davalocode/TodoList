@@ -13,14 +13,11 @@ let array_today = [];
 let array_month = [];
 let array_projects = [];
 
-/*const numeros = document.getElementsByClassName("div_tarea");
+//let array_almacenado = localStorage.setItem("array", JSON.stringify(array_inbox));
+//console.log(array_almacenado);
 
-for (const numero of numeros) {
-    numero.addEventListener("click", function tenerNumero() {
-        let x=numero.innerHTML;
-        console.log(x);
-    })
-}*/
+
+
 
 function tarea(nombre, fecha, description) {
     this.nombre = nombre;
@@ -43,12 +40,12 @@ today = yyyy + '-' + mm + '-' + dd;
 
 //Aquí creo y meto las tareas en la pagina y en array_inbox[], array_today[], array_month[]
 let contador_tarea = 0;
-let id_div=0;
+let id_div = 0;
 
 function crear(nombre, fecha, description) {
     //Crear el contenedor donde va a ir todo
     let main_div = document.createElement("div");
-    main_div.id=id_div;
+    main_div.id = id_div;
     main_div.className = "div_tarea";
 
     //Crear el span nombre
@@ -73,7 +70,7 @@ function crear(nombre, fecha, description) {
 
         for (const numero of numeros) {
             numero.addEventListener("click", function tenerNumero() {
-                let x= numero.id;
+                let x = numero.id;
                 console.log(x);
                 array_inbox.splice(x, 1);
                 array_today.splice(x, 1);
@@ -108,17 +105,37 @@ function crear(nombre, fecha, description) {
 
 function new_tarea() {
 
+    //Constructor del objeto
     array_inbox[contador_tarea] = new tarea(
         document.getElementById("name_tarea").value,
         document.getElementById("date_tarea").value,
         document.getElementById("description_tarea").value
     );
 
+    //Declaracion de las variables con los datos del objeto construido
     let nombre_tarea = array_inbox[contador_tarea].nombre;
     let fecha_tarea = array_inbox[contador_tarea].fecha;
     let descripcion_tarea = array_inbox[contador_tarea].description;
 
+    /*
+    //Se almacenan los datos de manera local
+    localStorage.setItem("nombre_tarea_almacenada", JSON.stringify(nombre_tarea));
+    localStorage.setItem("fecha_tarea_almacenada", JSON.stringify(fecha_tarea));
+    localStorage.setItem("descripcion_tarea_almacenada", JSON.stringify(descripcion_tarea));
+
+    let nombre_tarea_almacenada = localStorage.getItem("nombre_tarea_almacenada");
+    nombre_tarea_almacenada = nombre_tarea_almacenada.substring(1, (nombre_tarea_almacenada.length - 1));
+
+    let fecha_tarea_almacenada = localStorage.getItem("fecha_tarea_almacenada");
+    fecha_tarea_almacenada = fecha_tarea_almacenada.substring(1, (fecha_tarea_almacenada.length - 1));
+
+    let descripcion_tarea_almacenada = localStorage.getItem("descripcion_tarea_almacenada");
+    descripcion_tarea_almacenada = descripcion_tarea_almacenada.substring(1, (descripcion_tarea_almacenada.length - 1));
+    */
+    //Se crea el html con la funcion crear
+
     crear(nombre_tarea, fecha_tarea, descripcion_tarea);
+
 
 }
 
@@ -151,11 +168,11 @@ function new_project() {
 
 }
 
+//FUNCION PARA DEJAR TODO LIMPIO AL CAMBIAR
+
 let nuevo_contador = 0;
-let longitud_inbox;
 
 function delete_content() {
-    //x=0;
     nuevo_contador = 0;
     const list = document.getElementById("container");
     while (list.hasChildNodes()) {
@@ -164,29 +181,41 @@ function delete_content() {
 
 }
 
+//MOSTRAR DISTINTOS ARRAYS
+
+let longitud_inbox;
+
 document.getElementById("see_inbox").addEventListener("click", function home() {
-    id_div=0;
+    id_div = 0;
     document.getElementById("title").innerHTML = "INBOX"
     longitud_inbox = array_inbox.length;
     delete_content();
+
+        localStorage.setItem("array", JSON.stringify(array_inbox));
+        let prueba2 = localStorage.getItem("array");
+        let prueba3 = JSON.parse(prueba2);
+        console.log(prueba3);
+        console.log(prueba3[0].nombre)
+
     while (nuevo_contador <= longitud_inbox) {
         let nombre = array_inbox[nuevo_contador].nombre;
-        //console.log(array_inbox[nuevo_contador].nombre);
         let fecha = array_inbox[nuevo_contador].fecha;
         let descripcion = array_inbox[nuevo_contador].description;
+
         crear(nombre, fecha, descripcion);
+
+
         nuevo_contador++;
     }
 });
 
 document.getElementById("see_today").addEventListener("click", function home() {
-    id_div=0;
+    id_div = 0;
     document.getElementById("title").innerHTML = "TODAY"
     longitud_inbox = array_inbox.length;
     delete_content();
     while (nuevo_contador <= longitud_inbox) {
         let nombre = array_today[nuevo_contador].nombre;
-        //console.log(array_today[nuevo_contador].nombre);
         let fecha = array_today[nuevo_contador].fecha;
         let descripcion = array_today[nuevo_contador].description;
         crear(nombre, fecha, descripcion);
@@ -195,18 +224,32 @@ document.getElementById("see_today").addEventListener("click", function home() {
 });
 
 document.getElementById("see_month").addEventListener("click", function home() {
-    id_div=0;
+    id_div = 0;
     document.getElementById("title").innerHTML = "MONTH"
     longitud_inbox = array_inbox.length;
     delete_content();
     while (nuevo_contador <= longitud_inbox) {
         let nombre = array_month[nuevo_contador].nombre;
-        //console.log(array_month[nuevo_contador].nombre);
         let fecha = array_month[nuevo_contador].fecha;
         let descripcion = array_month[nuevo_contador].description;
         crear(nombre, fecha, descripcion);
         nuevo_contador++;
     }
+});
+
+//Esconder inbox
+let boleano = false;
+
+document.getElementById("hamburger").addEventListener("click", function pop_up() {
+    if (boleano == false) {
+        document.getElementById("left").style.display = "none";
+        boleano = true;
+    }
+    else {
+        document.getElementById("left").style.display = "block";
+        boleano = false;
+    }
+
 });
 
 
